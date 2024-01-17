@@ -1,0 +1,101 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ssn: <https://www.w3.org/TR/vocab-ssn/ssn.rdf#> .
+
+# Search and Rescue Mission
+class sar_mission {
+    missionId: xsd:string ;
+    missionStatus: xsd:string ;
+    incidentType: xsd:string ;
+    location: ssn:Sensor ;
+    affectedArea: ssn:Observation ;
+    startDateTime: xsd:dateTime ;
+    endDateTime: xsd:dateTime ;
+}
+
+# Environmental Conditions
+class env_conditions {
+    weatherConditions: ssn:Observation ;
+    terrainConditions: ssn:Observation ;
+}
+
+class weather_conditions {
+    temperature: xsd:float ;
+    humidity: xsd:float ;
+    windSpeed: xsd:float ;
+    windDirection: xsd:string ;
+}
+
+class terrain_conditions {
+    landCover: xsd:string ;
+    accessibility: xsd:string ;
+}
+
+# Search Techniques
+class search_technique {
+    type: xsd:string ;
+    equipment: ssn:ObservableProperty ;
+}
+
+class equipment {
+    type: xsd:string ;
+    description: xsd:string ;
+}
+
+# Rescue Operation Teams
+class rescue_team {
+    teamId: xsd:string ;
+    size: xsd:integer ;
+    specialists: ssn:System ;
+    assignedArea: ssn:Observation ;
+    missionPhase: xsd:string ;
+}
+
+class specialist {
+    type: xsd:string ;
+    expertise: xsd:string ;
+}
+
+# Victim Identification
+class victim {
+    victimId: xsd:string ;
+    personalIdentifiers: ssn:ObservableProperty ;
+    medicalConditions: ssn:ObservableProperty ;
+}
+
+class personal_identifiers {
+    name: xsd:string ;
+    dateOfBirth: xsd:date ;
+    otherIdentifiers: xsd:string ;
+}
+
+class medical_conditions {
+    allergies: xsd:string ;
+    chronicConditions: xsd:string ;
+}
+
+# Data from Heterogeneous Sensors
+class sensor_data {
+    source: xsd:string ;
+    timestamp: xsd:dateTime ;
+    data: xsd:string ;
+}
+
+# Relationships
+
+sar_mission sar_mission_has_env_conditions: env_conditions .
+
+env_conditions env_conditions_has_weather_conditions: weather_conditions .
+env_conditions env_conditions_has_terrain_conditions: terrain_conditions .
+
+sar_mission sar_mission_uses_search_techniques: search_technique .
+search_technique search_technique_has_equipment: equipment .
+
+rescue_team rescue_team_has_specialists: specialist .
+
+sar_mission sar_mission_is_assigned_to: rescue_team .
+
+rescue_team rescue_team_searches_in: ssn:Observation .
+
+sar_mission sar_mission_is_affected_by: env_conditions .
+
+victim victim_is_identified_using: sensor_data .
