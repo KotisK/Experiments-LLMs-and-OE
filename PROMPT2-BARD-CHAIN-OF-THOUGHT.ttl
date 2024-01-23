@@ -1,0 +1,87 @@
+@prefix : <http://example.com/WildfireSAROntology#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Wildfire Incident Class
+
+:WildfireIncident rdf:type rdfs:Class ;
+    rdfs:subClassOf :Incident ;
+    rdfs:comment "Represents a specific wildfire event, including location, size, type of wildfire, and status." .
+
+# Search and Rescue Mission Class
+
+:SearchAndRescueMission rdf:type rdfs:Class ;
+    rdfs:subClassOf :Mission ;
+    rdfs:comment "Represents a specific Search and Rescue operation launched in response to a wildfire incident." .
+
+# Environmental Conditions Class
+
+:EnvironmentalConditions rdf:type rdfs:Class ;
+    rdfs:subClassOf :OntologyElement ;
+    rdfs:comment "Represents the environmental conditions at the location of a wildfire incident or search and rescue operation." .
+
+# Search Techniques and Equipment Class
+
+:SearchTechniquesAndEquipment rdf:type rdfs:Class ;
+    rdfs:subClassOf :OntologyElement ;
+    rdfs:comment "Represents the search techniques and equipment used in search and rescue missions." .
+
+# Rescue Operation Team Class
+
+:RescueOperationTeam rdf:type rdfs:Class ;
+    rdfs:subClassOf :Team ;
+    rdfs:comment "Represents a specific team involved in a search and rescue operation." .
+
+# Victim Identification Class
+
+:VictimIdentification rdf:type rdfs:Class ;
+    rdfs:subClassOf :OntologyElement ;
+    rdfs:comment "Represents the methods used to identify victims in search and rescue missions." .
+
+# Wildfire Incident Properties
+
+:hasLocation rdfs:domain :WildfireIncident ;
+    rdfs:range :Location .
+:hasSize rdfs:domain :WildfireIncident ;
+    rdfs:range :Number .
+:hasType rdfs:domain :WildfireIncident ;
+    rdfs:range :WildfireType .
+:hasStatus rdfs:domain :WildfireIncident ;
+    rdfs:range :WildfireStatus .
+
+# Search and Rescue Mission Properties
+
+:hasMissionIdentifier rdfs:domain :SearchAndRescueMission ;
+    rdfs:range :Identifier .
+:hasMissionArea rdfs:domain :SearchAndRescueMission ;
+    rdfs:range :Area .
+:hasMissionStatus rdfs:domain :SearchAndRescueMission ;
+    rdfs:range :MissionStatus .
+
+# Environmental Conditions Properties
+
+:hasWindSpeed rdfs:domain :EnvironmentalConditions ;
+    rdfs:range :Number .
+:hasVisibility rdfs:domain :EnvironmentalConditions ;
+    rdfs:range :Number .
+:hasTemperature rdfs:domain :EnvironmentalConditions ;
+    rdfs:range :Number .
+
+# Search Techniques and Equipment Properties
+
+:usesTechnique rdfs:domain :SearchTechniquesAndEquipment ;
+    rdfs:range :SearchTechnique .
+:usesEquipment rdfs:domain :SearchTechniquesAndEquipment ;
+    rdfs:range :Equipment .
+
+# Rescue Operation Team Properties
+
+:hasTeamLeader rdfs:domain :RescueOperationTeam ;
+    rdfs:range :Person .
+:hasMember rdfs:domain :RescueOperationTeam ;
+    rdfs:range :Person .
+
+# Victim Identification Properties
+
+:usesIdentificationMethod rdfs:domain :VictimIdentification ;
+    rdfs:range :IdentificationMethod .

@@ -1,0 +1,39 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix wildfire-ontology: <https://www.example.com/wildfire-ontology#> .
+
+wildfire-ontology:Mission rdf:type rdfs:Class ;
+                           rdfs:subClassOf schema:Event ;
+                           rdfs:comment "A Search and Rescue (SAR) mission initiated to locate and rescue victims in a wildfire incident." .
+
+wildfire-ontology:IoTEntity rdf:type rdfs:Class ;
+                            rdfs:subClassOf schema:Device ;
+                            rdfs:comment "An Internet-of-Things (IoT) device deployed in a wildfire area to collect data and support SAR operations." .
+
+wildfire-ontology:Sensor rdf:type rdfs:Class ;
+                     rdfs:subClassOf wildfire-ontology:IoTEntity ;
+                     rdfs:comment "A sensor device used to measure environmental conditions or detect potential victims in a wildfire area." .
+
+wildfire-ontology:EnvironmentalCondition rdf:type rdfs:Class ;
+                                    rdfs:comment "A physical condition of the wildfire environment that affects SAR operations, such as temperature, humidity, visibility, and terrain." .
+
+wildfire-ontology:SearchTechnique rdf:type rdfs:Class ;
+                                rdfs:comment "A specific method or approach employed to search for victims in a wildfire area, such as grid search, line search, or canine search." .
+
+wildfire-ontology:Equipment rdf:type rdfs:Class ;
+                         rdfs:comment "Equipment used during SAR missions, such as radios, flashlights, binoculars, and personal protective equipment (PPE)." .
+
+wildfire-ontology:RescueOperationTeam rdf:type rdfs:Class ;
+                                  rdfs:comment "A group of individuals specialized in conducting SAR operations, such as urban search and rescue (USAR) teams, search dogs, and helicopter crews." .
+
+wildfire-ontology:VictimIdentification rdf:type rdfs:Class ;
+                                  rdfs:comment "The process of identifying potential victims in a wildfire area using various methods, such as visual observation, physical evidence, and DNA analysis." .
+
+wildfire-ontology:Wildfire rdf:type rdfs:Class ;
+                         rdfs:subClassOf schema:Incident ;
+                         rdfs:comment "A large uncontrolled fire that burns in a wildland area." .
+
+wildfire-ontology:Victim rdf:type rdfs:Class ;
+                    rdfs:subClassOf schema:Person ;
+                    rdfs:comment "An individual who is missing or endangered in a wildfire incident." .

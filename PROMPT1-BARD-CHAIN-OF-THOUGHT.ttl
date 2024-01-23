@@ -1,0 +1,79 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sosa: <http://www.w3.org/ns/sosa/>.
+@prefix ex: <https://example.com/>.
+
+# Top-Level Classes
+
+ex:WildfireEvent a rdfs:Class;
+  rdfs:subClassOf sosa:Observation.
+
+ex:FireOrigin a rdfs:Property;
+  rdfs:domain ex:WildfireEvent.
+
+ex:FireSize a rdfs:Property;
+  rdfs:domain ex:WildfireEvent.
+
+ex:FireSeverity a rdfs:Property;
+  rdfs:domain ex:WildfireEvent.
+
+ex:SearchAndRescueOperation a rdfs:Class;
+  rdfs:subClassOf sosa:Activity.
+
+ex:MissionObjective a rdfs:Property;
+  rdfs:domain ex:SearchAndRescueOperation.
+
+ex:RescueTeam a rdfs:Class.
+
+ex:RescueEquipment a rdfs:Class.
+
+# Sub-Classes and Relationships
+
+ex:SearchPhase a rdfs:Class;
+  rdfs:subClassOf ex:SearchAndRescueOperation.
+
+ex:InitialSurvey a ex:SearchPhase;
+  rdfs:subClassOf ex:SearchPhase.
+
+ex:AreaSearch a ex:SearchPhase;
+  rdfs:subClassOf ex:SearchPhase.
+
+ex:FocusedSearch a ex:SearchPhase;
+  rdfs:subClassOf ex:SearchPhase.
+
+ex:RescuePlan a rdfs:Class;
+  rdfs:subClassOf sosa:Plan.
+
+ex:CommunicationPlan a rdfs:Class;
+  rdfs:subClassOf sosa:Plan.
+
+ex:SafetyPlan a rdfs:Class;
+  rdfs:subClassOf sosa:Plan.
+
+# Reused Ontologies
+
+@prefix geo: <http://www.opengis.net/ont/geosparql#>.
+
+ex:WildfireEvent geo:hasGeometry ex:FireExtent;
+  rdfs:seeAlso geo:SpatialThing.
+
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/d2rq/0.8.0/d2rq#>.
+
+ex:WildfireEvent d2rq:mapsToWildfireEvent ex:WildfireEventTable;
+  rdfs:seeAlso d2rq:Mapping.
+
+@prefix prov: <http://www.w3.org/ns/prov#>.
+
+ex:WildfireEvent prov:wasAttributedTo ex:WildfireReporter;
+  prov:wasGeneratedAt ex:WildfireReportTimestamp;
+  rdfs:seeAlso prov:Entity.
+
+# Applications
+
+ex:SearchAndRescuePlanning a rdfs:Class;
+  rdfs:subClassOf sosa:Process.
+
+ex:DataIntegration a rdfs:Class;
+  rdfs:subClassOf sosa:Process.
+
+ex:DecisionSupportSystem a rdfs:Class;
+  rdfs:subClassOf sosa:Agent.
