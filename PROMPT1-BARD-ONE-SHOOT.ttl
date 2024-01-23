@@ -1,0 +1,70 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix wildfire-ont: <https://example.com/wildfire-ontology#> .
+@prefix SAR-ont: <https://example.com/SAR-ontology#> .
+
+# Wildfire-related terms
+wildfire-ont:Wildfire
+  a owl:Class ;
+  rdfs:label "Wildfire" ;
+  rdfs:subClassOf owl:Event ;
+  rdfs:comment "A large uncontrolled fire that burns in a wildland." .
+
+wildfire-ont:WildfireSeverity
+  a owl:Class ;
+  rdfs:label "Wildfire Severity" ;
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "The level of intensity and damage caused by a wildfire." .
+
+# SAR-related terms
+SAR-ont:SearchAndRescueMission
+  a owl:Class ;
+  rdfs:label "Search and Rescue Mission" ;
+  rdfs:subClassOf owl:Activity ;
+  rdfs:comment "An operation that aims to locate and rescue people who are lost, injured, or in danger." .
+
+SAR-ont:SearchTechnique
+  a owl:Class ;
+  rdfs:label "Search Technique" ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:comment "A method or approach used to search for missing or endangered persons." .
+
+SAR-ont:SearchEquipment
+  a owl:Class ;
+  rdfs:label "Search Equipment" ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:comment "Tools and devices used to assist in searching for missing or endangered persons." .
+
+SAR-ont:RescueTeam
+  a owl:Class ;
+  rdfs:label "Rescue Team" ;
+  rdfs:subClassOf owl:Group ;
+  rdfs:comment "A group of trained personnel who conduct search and rescue operations." .
+
+SAR-ont:VictimIdentification
+  a owl:Class ;
+  rdfs:label "Victim Identification" ;
+  rdfs:subClassOf owl:Activity ;
+  rdfs:comment "The process of determining the identity of a deceased person." .
+
+# Relationships between wildfire and SAR terms
+
+wildfire-ont:Wildfire
+  rdfs:subClassOf SAR-ont:SearchAndRescueOperation .
+
+# Relationships between SAR-related terms
+
+SAR-ont:SearchAndRescueMission
+  owl:hasComponent SAR-ont:SearchTechnique .
+
+SAR-ont:SearchAndRescueMission
+  owl:hasComponent SAR-ont:SearchEquipment .
+
+SAR-ont:SearchAndRescueMission
+  owl:hasMember SAR-ont:RescueTeam .
+
+SAR-ont:VictimIdentification
+  owl:isPartOf SAR-ont:SearchAndRescueMission .
